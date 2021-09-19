@@ -4,9 +4,6 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-//using System.Net.Http;
-//using System.Net.Http.Headers;
-//using System.Net.Http.Formatting;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -17,85 +14,119 @@ namespace WinMetasisLP
 {
     public partial class FormProduto : Form
     {
-        //static HttpClient client = new HttpClient();
+        Produto _ProdutoModel;
 
         public FormProduto()
         {
             InitializeComponent();
 
             UtilAPI.ConfigureClient();
-
-            //client.BaseAddress
+            CreateModels();
         }
 
-        private async void btnLoad_Click(object sender, EventArgs e)
+        private void CreateModels()
         {
-            //Reload
-            Produto _Produto = new Produto
-            {
-                produtoId = Convert.ToInt32(EdtProdutoId.Text)
-            };
-
-            _Produto = await UtilAPI.GetAsync(_Produto, $"/api/Produto/{_Produto.produtoId}");
-
-            //Refresh
-            EdtProdutoId.Text = _Produto.produtoId.ToString();
-            EdtDescricao.Text = _Produto.descricao;
-            EdtPreco.Text = _Produto.preco.ToString();
+            _ProdutoModel = new Produto();
         }
 
-        private async void btnPost_Click(object sender, EventArgs e)
+        private void Reload()
         {
-            //Reload
-            Produto _Produto = new Produto
-            {
-                //produtoId = Convert.ToInt32(EdtProdutoId.Text)
-                descricao =EdtDescricao.Text,
-                preco = Convert.ToDouble(EdtPreco.Text)
-            };
-
-            var url = await UtilAPI.CreateAsync<Produto>(_Produto, "Produto");
-            _Produto = await UtilAPI.GetAsync(_Produto, url.PathAndQuery);
-
-            //Refresh
-            EdtProdutoId.Text = _Produto.produtoId.ToString();
-
+            _ProdutoModel.produtoId = int.TryParse(EdtProdutoId.Text, out int i) ? Convert.ToInt32(EdtProdutoId.Text) : 0;
+            _ProdutoModel.descricao = EdtDescricao.Text;
+            _ProdutoModel.preco = double.TryParse(EdtPreco.Text, out double n) ? Convert.ToDouble(EdtPreco.Text) : 0;
         }
 
-        private async void btnPut_Click(object sender, EventArgs e)
+        private void RefreshView()
         {
-            //Reload
-            Produto _Produto = new Produto
-            {
-                produtoId = Convert.ToInt32(EdtProdutoId.Text),
-                descricao = EdtDescricao.Text,
-                preco = Convert.ToDouble(EdtPreco.Text)
-            };
+            EdtProdutoId.Text = _ProdutoModel.produtoId.ToString();
+            EdtDescricao.Text = _ProdutoModel.descricao;
+            EdtPreco.Text = _ProdutoModel.preco.ToString();
 
-            await UtilAPI.UpdateAsync(_Produto, $"Produto/{_Produto.produtoId}");
-
-            //Refresh
-            EdtProdutoId.Text = _Produto.produtoId.ToString();
-            EdtDescricao.Text = _Produto.descricao;
-            EdtPreco.Text = _Produto.preco.ToString();
-
+            
         }
 
-        private async void btnDelete_Click(object sender, EventArgs e)
+        private void Clean()
         {
-            //Reload
-            Produto _Produto = new Produto
+            CreateModels();
+            RefreshView();
+            EdtProdutoId.Focus();
+        }
+        private void btnClean_Click(object sender, EventArgs e)
+        {
+            Clean();
+        }
+
+        private void btnLoad_Click(object sender, EventArgs e)
+        {
+            LoadFields();
+        }
+        
+        private void LoadFields()
+        {
+            Reload();
+            try
             {
-                produtoId = Convert.ToInt32(EdtProdutoId.Text)
-            };
+                //Rodar de Modo Síncrono 
+                //   https://stackoverflow.com/questions/53529061/whats-the-right-way-to-use-httpclient-synchronously/53529122
+                //   https://docs.microsoft.com/en-us/archive/blogs/jpsanders/asp-net-do-not-use-task-result-in-main-context
+                var task = Task.Run(() => UtilAPI.GetAsync<Produto>(_ProdutoModel, _ProdutoModel.produtoId.ToString()));
+                task.Wait();
+                _ProdutoModel = task.Result;
 
-            var statusCode = await UtilAPI.DeleteAsync(_Produto.produtoId, "Produto");
-            MessageBox.Show($"Registro Excluído! (HTTP Status = {(int)statusCode})");
+                //Modo Assincrono
+                //_ProdutoModel = await UtilAPI.GetAsync<Produto>(_ProdutoModel, _ProdutoModel.produtoId.ToString());
 
-            //Refresh
-            EdtProdutoId.Text = _Produto.produtoId.ToString();
-            EdtDescricao.Text = _Produto.descricao;
-            EdtPreco.Text = _Produto.preco.ToString();
+                if (_ProdutoModel.Options.Status == StatusRecord.Inserting)
+                {
+                    CreateModels();
+                }
+            }
+            finally
+            {
+                RefreshView();
+            }
+        }
+
+        private void btnPost_Click(object sender, EventArgs e)
+        {
+            Reload();
+            try
+            {
+                if (_ProdutoModel.Options.Status == StatusRecord.Inserting)
+                {
+                    var task = Task.Run(() => UtilAPI.CreateAndGetAsync<Produto>(_ProdutoModel));
+                    task.Wait();
+                }
+                else
+                {
+                    var task = Task.Run(() => UtilAPI.UpdateAsync(_ProdutoModel, _ProdutoModel.produtoId.ToString()) );
+                    task.Wait();
+                }
+            }
+            finally
+            {
+                RefreshView();
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            Reload();
+            try
+            {
+                if (_ProdutoModel.Options.Status == StatusRecord.Updating)
+                {
+                    var task = Task.Run(() => UtilAPI.DeleteAsync(_ProdutoModel, _ProdutoModel.produtoId.ToString()) );
+                    task.Wait();
+                    var statusCode = task.Result;
+                    MessageBox.Show($"Registro Excluído!");
+                    Clean();
+                }
+            }
+            finally
+            {
+                RefreshView();
+            }
         }
 
         private async void btnLoadGrid_Click(object sender, EventArgs e)
@@ -105,12 +136,13 @@ namespace WinMetasisLP
 
             List<Produto> _Produtos = new List<Produto>();
 
-            _Produtos = await UtilAPI.GetAllAsync<List<Produto>>(_Produtos, "Produto");
-            foreach(Produto _Produto in _Produtos)
+            _Produtos = await UtilAPI.GetAllAsync<List<Produto>>(_ProdutoModel);
+            foreach (Produto _Produto in _Produtos)
             {
                 dgProdutos.Rows.Add(_Produto.produtoId, _Produto.descricao, _Produto.preco);
             }
-            
+
         }
+
     }
 }

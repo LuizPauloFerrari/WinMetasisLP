@@ -83,6 +83,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Base\EntityOptions.cs" />
+    <Compile Include="Entities\Base\IEntity.cs" />
     <Compile Include="Entities\Produto.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
@@ -124,6 +126,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Util\Util.Enums.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

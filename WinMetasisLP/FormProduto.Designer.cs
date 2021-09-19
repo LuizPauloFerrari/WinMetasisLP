@@ -37,13 +37,13 @@ namespace WinMetasisLP
             this.EdtPreco = new System.Windows.Forms.MaskedTextBox();
             this.btnLoad = new System.Windows.Forms.Button();
             this.btnPost = new System.Windows.Forms.Button();
-            this.btnPut = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.dgProdutos = new System.Windows.Forms.DataGridView();
             this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Descricao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Preco = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnLoadGrid = new System.Windows.Forms.Button();
+            this.btnClean = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgProdutos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -80,6 +80,7 @@ namespace WinMetasisLP
             this.EdtProdutoId.Name = "EdtProdutoId";
             this.EdtProdutoId.Size = new System.Drawing.Size(100, 20);
             this.EdtProdutoId.TabIndex = 3;
+            this.EdtProdutoId.Leave += new System.EventHandler(this.btnLoad_Click);
             // 
             // EdtDescricao
             // 
@@ -111,23 +112,13 @@ namespace WinMetasisLP
             this.btnPost.Name = "btnPost";
             this.btnPost.Size = new System.Drawing.Size(75, 23);
             this.btnPost.TabIndex = 7;
-            this.btnPost.Text = "Incluir";
+            this.btnPost.Text = "Salvar";
             this.btnPost.UseVisualStyleBackColor = true;
             this.btnPost.Click += new System.EventHandler(this.btnPost_Click);
             // 
-            // btnPut
-            // 
-            this.btnPut.Location = new System.Drawing.Point(153, 83);
-            this.btnPut.Name = "btnPut";
-            this.btnPut.Size = new System.Drawing.Size(75, 23);
-            this.btnPut.TabIndex = 8;
-            this.btnPut.Text = "Alterar";
-            this.btnPut.UseVisualStyleBackColor = true;
-            this.btnPut.Click += new System.EventHandler(this.btnPut_Click);
-            // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(234, 83);
+            this.btnDelete.Location = new System.Drawing.Point(153, 83);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 23);
             this.btnDelete.TabIndex = 9;
@@ -168,7 +159,7 @@ namespace WinMetasisLP
             // 
             // btnLoadGrid
             // 
-            this.btnLoadGrid.Location = new System.Drawing.Point(359, 83);
+            this.btnLoadGrid.Location = new System.Drawing.Point(234, 83);
             this.btnLoadGrid.Name = "btnLoadGrid";
             this.btnLoadGrid.Size = new System.Drawing.Size(109, 23);
             this.btnLoadGrid.TabIndex = 11;
@@ -176,15 +167,25 @@ namespace WinMetasisLP
             this.btnLoadGrid.UseVisualStyleBackColor = true;
             this.btnLoadGrid.Click += new System.EventHandler(this.btnLoadGrid_Click);
             // 
+            // btnClean
+            // 
+            this.btnClean.Location = new System.Drawing.Point(259, 4);
+            this.btnClean.Name = "btnClean";
+            this.btnClean.Size = new System.Drawing.Size(75, 23);
+            this.btnClean.TabIndex = 12;
+            this.btnClean.Text = "Limpar";
+            this.btnClean.UseVisualStyleBackColor = true;
+            this.btnClean.Click += new System.EventHandler(this.btnClean_Click);
+            // 
             // FormProduto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnClean);
             this.Controls.Add(this.btnLoadGrid);
             this.Controls.Add(this.dgProdutos);
             this.Controls.Add(this.btnDelete);
-            this.Controls.Add(this.btnPut);
             this.Controls.Add(this.btnPost);
             this.Controls.Add(this.btnLoad);
             this.Controls.Add(this.EdtPreco);
@@ -211,12 +212,12 @@ namespace WinMetasisLP
         private System.Windows.Forms.MaskedTextBox EdtPreco;
         private System.Windows.Forms.Button btnLoad;
         private System.Windows.Forms.Button btnPost;
-        private System.Windows.Forms.Button btnPut;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.DataGridView dgProdutos;
         private System.Windows.Forms.DataGridViewTextBoxColumn Codigo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Descricao;
         private System.Windows.Forms.DataGridViewTextBoxColumn Preco;
         private System.Windows.Forms.Button btnLoadGrid;
+        private System.Windows.Forms.Button btnClean;
     }
 }

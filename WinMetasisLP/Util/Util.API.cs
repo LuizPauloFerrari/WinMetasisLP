@@ -9,8 +9,8 @@ using System.Windows.Forms;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
-//using System.Net.Http.Formatting;
 using System.Threading.Tasks;
+using WinMetasisLP.Entities.Base;
 
 namespace WinMetasisLP.Util
 {
@@ -27,30 +27,61 @@ namespace WinMetasisLP.Util
                 new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        public static async Task<Uri> CreateAsync<T>(T aObjeto, String aPath)
+        public static async Task<Uri> CreateAsync<T>(T aObjeto) where T : IEntity
         {
             HttpResponseMessage response = await client.PostAsJsonAsync(
-                $"api/{aPath}", aObjeto);
+                $"api/{aObjeto.GetType().Name}", aObjeto);
             response.EnsureSuccessStatusCode();
+
+            (aObjeto as IEntity).Options.Status = StatusRecord.Updating;
 
             // return URI of the created resource.
             return response.Headers.Location;
         }
-
-        public static async Task<T> GetAsync<T>(T aObjeto, string path)
+        
+        public static async Task<T> CreateAndGetAsync<T>(T aObjeto) where T : IEntity
         {
+            var url = await CreateAsync<T>(aObjeto);
+            return await GetAsync<T>(aObjeto, url.PathAndQuery);
+        }
+
+        public static async Task<T> GetAsync<T>(T aObjeto, string path) where T : IEntity
+        {
+            if (!path.StartsWith("/api"))
+            {
+                path = $"/api/{aObjeto.GetType().Name}/{path}";
+            }
+            
             HttpResponseMessage response = await client.GetAsync(path);
+            
             if (response.IsSuccessStatusCode)
             {
                 aObjeto = await response.Content.ReadAsAsync<T>();
+                (aObjeto as IEntity).Options.Found = true;
+                (aObjeto as IEntity).Options.Status = StatusRecord.Updating;
+            }
+            else
+            {
+                (aObjeto as IEntity).Options.Found = false;
+                (aObjeto as IEntity).Options.Status = StatusRecord.Inserting;
             }
             return aObjeto;
         }
+        
+        //public static T GetSync<T>(T aObjeto, string path) where T : IEntity
+        //{
+            
+        //}
 
-        public static async Task<T> UpdateAsync<T>(T aObjeto, String aPath)
+        public static async Task<T> UpdateAsync<T>(T aObjeto, String path) where T : IEntity
         {
+            if (!path.StartsWith("/api"))
+            {
+                path = $"/api/{aObjeto.GetType().Name}/{path}";
+            }
+
             HttpResponseMessage response = await client.PutAsJsonAsync(
-                $"api/{aPath}", aObjeto);
+                path, aObjeto);
             response.EnsureSuccessStatusCode();
 
             // Deserialize the updated product from the response body.
@@ -58,21 +89,32 @@ namespace WinMetasisLP.Util
             return aObjeto;
         }
 
-        public static async Task<HttpStatusCode> DeleteAsync(int id, String aPath)
+        public static async Task<HttpStatusCode> DeleteAsync<T>(T aObjeto, String path) where T : IEntity
         {
-            HttpResponseMessage response = await client.DeleteAsync(
-                $"api/{aPath}/{id}");
+            if (!path.StartsWith("/api"))
+            {
+                path = $"/api/{aObjeto.GetType().Name}/{path}";
+            }
+            HttpResponseMessage response = await client.DeleteAsync(path);
             return response.StatusCode;
         }
 
-        public static async Task<T> GetAllAsync<T>(T aObjeto, string path)
+        public static async Task<T> GetAllAsync<T>(string path)
         {
             HttpResponseMessage response = await client.GetAsync($"api/{path}/");
             if (response.IsSuccessStatusCode)
             {
-                aObjeto = await response.Content.ReadAsAsync<T>();
+                return await response.Content.ReadAsAsync<T>();
             }
-            return aObjeto;
+            else
+            {
+                return default(T);
+            }
+        }
+        
+        public static async Task<T> GetAllAsync<T>(Object aObjeto)
+        {
+            return await GetAllAsync<T>(aObjeto.GetType().Name);
         }
        
     }
