@@ -18,10 +18,10 @@ namespace WinMetasisLP.Util
     {
         static HttpClient client = new HttpClient();
 
-        public static void ConfigureClient()
+        public static void ConfigureClient(string aURL)
         {
             // Update port # in the following line.
-            client.BaseAddress = new Uri("https://localhost:44380/");
+            client.BaseAddress = new Uri(aURL);
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));

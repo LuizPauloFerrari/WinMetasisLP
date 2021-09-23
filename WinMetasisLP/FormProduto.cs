@@ -19,8 +19,7 @@ namespace WinMetasisLP
         public FormProduto()
         {
             InitializeComponent();
-
-            UtilAPI.ConfigureClient();
+            
             CreateModels();
         }
 
@@ -144,5 +143,16 @@ namespace WinMetasisLP
 
         }
 
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            FormProdutoSearch _Form = new FormProdutoSearch();
+            //_Form.MdiParent = this;
+            if (_Form.ShowDialog() == DialogResult.OK)
+            {
+                EdtProdutoId.Text = _Form.ResultValue;
+                LoadFields();
+            }
+            EdtProdutoId.Focus();
+        }
     }
 }

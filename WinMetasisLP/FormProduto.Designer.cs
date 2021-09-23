@@ -35,7 +35,7 @@ namespace WinMetasisLP
             this.EdtProdutoId = new System.Windows.Forms.TextBox();
             this.EdtDescricao = new System.Windows.Forms.TextBox();
             this.EdtPreco = new System.Windows.Forms.MaskedTextBox();
-            this.btnLoad = new System.Windows.Forms.Button();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.btnPost = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.dgProdutos = new System.Windows.Forms.DataGridView();
@@ -96,15 +96,15 @@ namespace WinMetasisLP
             this.EdtPreco.Size = new System.Drawing.Size(100, 20);
             this.EdtPreco.TabIndex = 5;
             // 
-            // btnLoad
+            // btnSearch
             // 
-            this.btnLoad.Location = new System.Drawing.Point(178, 4);
-            this.btnLoad.Name = "btnLoad";
-            this.btnLoad.Size = new System.Drawing.Size(75, 23);
-            this.btnLoad.TabIndex = 6;
-            this.btnLoad.Text = "Carregar";
-            this.btnLoad.UseVisualStyleBackColor = true;
-            this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
+            this.btnSearch.Location = new System.Drawing.Point(178, 4);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.TabIndex = 6;
+            this.btnSearch.Text = "Pesquisar";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // btnPost
             // 
@@ -187,7 +187,7 @@ namespace WinMetasisLP
             this.Controls.Add(this.dgProdutos);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnPost);
-            this.Controls.Add(this.btnLoad);
+            this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.EdtPreco);
             this.Controls.Add(this.EdtDescricao);
             this.Controls.Add(this.EdtProdutoId);
@@ -210,7 +210,7 @@ namespace WinMetasisLP
         private System.Windows.Forms.TextBox EdtProdutoId;
         private System.Windows.Forms.TextBox EdtDescricao;
         private System.Windows.Forms.MaskedTextBox EdtPreco;
-        private System.Windows.Forms.Button btnLoad;
+        private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Button btnPost;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.DataGridView dgProdutos;
