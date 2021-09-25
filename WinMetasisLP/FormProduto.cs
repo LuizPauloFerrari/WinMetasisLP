@@ -95,6 +95,7 @@ namespace WinMetasisLP
                 {
                     var task = Task.Run(() => UtilAPI.CreateAndGetAsync<Produto>(_ProdutoModel));
                     task.Wait();
+                    _ProdutoModel = task.Result;
                 }
                 else
                 {

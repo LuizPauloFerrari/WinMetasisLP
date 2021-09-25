@@ -112,6 +112,20 @@ namespace WinMetasisLP.Util
             }
         }
         
+        public static async Task<T> PostFilterAsync<T, T2>(T2 aObjeto)
+        {
+            HttpResponseMessage response = await client.PostAsJsonAsync(
+                $"api/{aObjeto.ToString()}/Filter", aObjeto);
+            if (response.IsSuccessStatusCode)
+            {
+                return await response.Content.ReadAsAsync<T>();
+            }
+            else
+            {
+                return default(T);
+            }
+        }
+        
         public static async Task<T> GetAllAsync<T>(Object aObjeto)
         {
             return await GetAllAsync<T>(aObjeto.GetType().Name);

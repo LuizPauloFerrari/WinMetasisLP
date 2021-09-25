@@ -24,17 +24,24 @@ namespace WinMetasisLP
 
         private async void btnLoad_Click(object sender, EventArgs e)
         {
-            Produto _ProdutoModel;
-            _ProdutoModel = new Produto();
-            //await Task.Delay(5000);
             dgProdutos.Rows.Clear();
 
-            List<Produto> _Produtos = new List<Produto>();
-
-            _Produtos = await UtilAPI.GetAllAsync<List<Produto>>(_ProdutoModel);
-            foreach (Produto _Produto in _Produtos)
+            ProdutoDTO _ProdutoModel = new ProdutoDTO
             {
-                dgProdutos.Rows.Add(_Produto.produtoId, _Produto.descricao, _Produto.preco);
+                produtoId = int.TryParse(edtProdutoId.Text, out int i) ? Convert.ToInt32(edtProdutoId.Text) : 0,
+                descricao = EdtDescricao.Text,
+                precoIni = double.TryParse(edtPrecoIni.Text, out double n1) ? Convert.ToDouble(edtPrecoIni.Text) : 0,
+                precoFim = double.TryParse(EdtPrecoFim.Text, out double n2) ? Convert.ToDouble(EdtPrecoFim.Text) : 0
+            };
+
+            List<Produto> _Produtos;
+            _Produtos = await UtilAPI.PostFilterAsync<List<Produto>,ProdutoDTO>(_ProdutoModel);
+            if (_Produtos != null)
+            {
+                foreach (Produto _Produto in _Produtos)
+                {
+                    dgProdutos.Rows.Add(_Produto.produtoId, _Produto.descricao, _Produto.preco);
+                }
             }
         }
 

@@ -85,6 +85,7 @@
   <ItemGroup>
     <Compile Include="Entities\Base\EntityOptions.cs" />
     <Compile Include="Entities\Base\IEntity.cs" />
+    <Compile Include="Entities\ProdutoDTO.cs" />
     <Compile Include="Entities\Produto.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>

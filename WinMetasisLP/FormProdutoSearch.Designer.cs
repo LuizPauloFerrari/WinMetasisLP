@@ -32,23 +32,23 @@ namespace WinMetasisLP
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgProdutos = new System.Windows.Forms.DataGridView();
+            this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Descricao = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Preco = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.edtProdutoId = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.EdtDescricao = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.edtPrecoIni = new System.Windows.Forms.MaskedTextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.EdtPrecoFim = new System.Windows.Forms.MaskedTextBox();
             this.btnLoad = new System.Windows.Forms.Button();
             this.btnOk = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
-            this.EdtPrecoFim = new System.Windows.Forms.MaskedTextBox();
-            this.edtPrecoIni = new System.Windows.Forms.MaskedTextBox();
-            this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Descricao = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Preco = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgProdutos)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -77,6 +77,30 @@ namespace WinMetasisLP
             this.dgProdutos.TabIndex = 11;
             this.dgProdutos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgProdutos_CellContentClick);
             this.dgProdutos.DoubleClick += new System.EventHandler(this.dgProdutos_DoubleClick);
+            // 
+            // Codigo
+            // 
+            this.Codigo.HeaderText = "Código";
+            this.Codigo.Name = "Codigo";
+            this.Codigo.ReadOnly = true;
+            this.Codigo.Width = 80;
+            // 
+            // Descricao
+            // 
+            this.Descricao.HeaderText = "Descrição";
+            this.Descricao.Name = "Descricao";
+            this.Descricao.ReadOnly = true;
+            this.Descricao.Width = 350;
+            // 
+            // Preco
+            // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.Format = "C2";
+            dataGridViewCellStyle2.NullValue = null;
+            this.Preco.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Preco.HeaderText = "Preço";
+            this.Preco.Name = "Preco";
+            this.Preco.ReadOnly = true;
             // 
             // flowLayoutPanel1
             // 
@@ -140,6 +164,13 @@ namespace WinMetasisLP
             this.label4.Text = "Preço Inicial:";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // edtPrecoIni
+            // 
+            this.edtPrecoIni.Location = new System.Drawing.Point(88, 39);
+            this.edtPrecoIni.Name = "edtPrecoIni";
+            this.edtPrecoIni.Size = new System.Drawing.Size(67, 20);
+            this.edtPrecoIni.TabIndex = 12;
+            // 
             // label5
             // 
             this.label5.Location = new System.Drawing.Point(161, 36);
@@ -148,6 +179,13 @@ namespace WinMetasisLP
             this.label5.TabIndex = 6;
             this.label5.Text = "Preço Inicial:";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // EdtPrecoFim
+            // 
+            this.EdtPrecoFim.Location = new System.Drawing.Point(246, 39);
+            this.EdtPrecoFim.Name = "EdtPrecoFim";
+            this.EdtPrecoFim.Size = new System.Drawing.Size(72, 20);
+            this.EdtPrecoFim.TabIndex = 11;
             // 
             // btnLoad
             // 
@@ -205,46 +243,8 @@ namespace WinMetasisLP
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(649, 21);
             this.label3.TabIndex = 4;
-            this.label3.Text = "Descrição";
+            this.label3.Text = "Filtros";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // EdtPrecoFim
-            // 
-            this.EdtPrecoFim.Location = new System.Drawing.Point(246, 39);
-            this.EdtPrecoFim.Name = "EdtPrecoFim";
-            this.EdtPrecoFim.Size = new System.Drawing.Size(72, 20);
-            this.EdtPrecoFim.TabIndex = 11;
-            // 
-            // edtPrecoIni
-            // 
-            this.edtPrecoIni.Location = new System.Drawing.Point(88, 39);
-            this.edtPrecoIni.Name = "edtPrecoIni";
-            this.edtPrecoIni.Size = new System.Drawing.Size(67, 20);
-            this.edtPrecoIni.TabIndex = 12;
-            // 
-            // Codigo
-            // 
-            this.Codigo.HeaderText = "Código";
-            this.Codigo.Name = "Codigo";
-            this.Codigo.ReadOnly = true;
-            this.Codigo.Width = 80;
-            // 
-            // Descricao
-            // 
-            this.Descricao.HeaderText = "Descrição";
-            this.Descricao.Name = "Descricao";
-            this.Descricao.ReadOnly = true;
-            this.Descricao.Width = 350;
-            // 
-            // Preco
-            // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle2.Format = "C2";
-            dataGridViewCellStyle2.NullValue = null;
-            this.Preco.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Preco.HeaderText = "Preço";
-            this.Preco.Name = "Preco";
-            this.Preco.ReadOnly = true;
             // 
             // FormProdutoSearch
             // 
