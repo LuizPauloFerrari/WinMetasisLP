@@ -38,13 +38,7 @@ namespace WinMetasisLP
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnPost = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
-            this.dgProdutos = new System.Windows.Forms.DataGridView();
-            this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Descricao = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Preco = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnLoadGrid = new System.Windows.Forms.Button();
             this.btnClean = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dgProdutos)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -68,7 +62,7 @@ namespace WinMetasisLP
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(28, 57);
+            this.label3.Location = new System.Drawing.Point(28, 60);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(38, 13);
             this.label3.TabIndex = 2;
@@ -86,7 +80,7 @@ namespace WinMetasisLP
             // 
             this.EdtDescricao.Location = new System.Drawing.Point(72, 31);
             this.EdtDescricao.Name = "EdtDescricao";
-            this.EdtDescricao.Size = new System.Drawing.Size(408, 20);
+            this.EdtDescricao.Size = new System.Drawing.Size(513, 20);
             this.EdtDescricao.TabIndex = 4;
             // 
             // EdtPreco
@@ -126,47 +120,6 @@ namespace WinMetasisLP
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
-            // dgProdutos
-            // 
-            this.dgProdutos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgProdutos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Codigo,
-            this.Descricao,
-            this.Preco});
-            this.dgProdutos.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dgProdutos.Location = new System.Drawing.Point(0, 127);
-            this.dgProdutos.Name = "dgProdutos";
-            this.dgProdutos.Size = new System.Drawing.Size(800, 323);
-            this.dgProdutos.TabIndex = 10;
-            // 
-            // Codigo
-            // 
-            this.Codigo.HeaderText = "Código";
-            this.Codigo.Name = "Codigo";
-            this.Codigo.ReadOnly = true;
-            // 
-            // Descricao
-            // 
-            this.Descricao.HeaderText = "Descrição";
-            this.Descricao.Name = "Descricao";
-            this.Descricao.ReadOnly = true;
-            // 
-            // Preco
-            // 
-            this.Preco.HeaderText = "Preço";
-            this.Preco.Name = "Preco";
-            this.Preco.ReadOnly = true;
-            // 
-            // btnLoadGrid
-            // 
-            this.btnLoadGrid.Location = new System.Drawing.Point(234, 83);
-            this.btnLoadGrid.Name = "btnLoadGrid";
-            this.btnLoadGrid.Size = new System.Drawing.Size(109, 23);
-            this.btnLoadGrid.TabIndex = 11;
-            this.btnLoadGrid.Text = "Atualizar Lista";
-            this.btnLoadGrid.UseVisualStyleBackColor = true;
-            this.btnLoadGrid.Click += new System.EventHandler(this.btnLoadGrid_Click);
-            // 
             // btnClean
             // 
             this.btnClean.Location = new System.Drawing.Point(259, 4);
@@ -181,10 +134,8 @@ namespace WinMetasisLP
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(597, 116);
             this.Controls.Add(this.btnClean);
-            this.Controls.Add(this.btnLoadGrid);
-            this.Controls.Add(this.dgProdutos);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnPost);
             this.Controls.Add(this.btnSearch);
@@ -196,7 +147,6 @@ namespace WinMetasisLP
             this.Controls.Add(this.label1);
             this.Name = "FormProduto";
             this.Text = "FormProduto";
-            ((System.ComponentModel.ISupportInitialize)(this.dgProdutos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -213,11 +163,6 @@ namespace WinMetasisLP
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Button btnPost;
         private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.DataGridView dgProdutos;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Codigo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Descricao;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Preco;
-        private System.Windows.Forms.Button btnLoadGrid;
         private System.Windows.Forms.Button btnClean;
     }
 }

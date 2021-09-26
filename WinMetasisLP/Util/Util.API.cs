@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -33,7 +26,7 @@ namespace WinMetasisLP.Util
                 $"api/{aObjeto.GetType().Name}", aObjeto);
             response.EnsureSuccessStatusCode();
 
-            (aObjeto as IEntity).Options.Status = StatusRecord.Updating;
+            aObjeto.Options.Status = StatusRecord.Updating;
 
             // return URI of the created resource.
             return response.Headers.Location;
@@ -57,22 +50,17 @@ namespace WinMetasisLP.Util
             if (response.IsSuccessStatusCode)
             {
                 aObjeto = await response.Content.ReadAsAsync<T>();
-                (aObjeto as IEntity).Options.Found = true;
-                (aObjeto as IEntity).Options.Status = StatusRecord.Updating;
+                aObjeto.Options.Found = true;
+                aObjeto.Options.Status = StatusRecord.Updating;
             }
             else
             {
-                (aObjeto as IEntity).Options.Found = false;
-                (aObjeto as IEntity).Options.Status = StatusRecord.Inserting;
+                aObjeto.Options.Found = false;
+                aObjeto.Options.Status = StatusRecord.Inserting;
             }
             return aObjeto;
         }
-        
-        //public static T GetSync<T>(T aObjeto, string path) where T : IEntity
-        //{
-            
-        //}
-
+       
         public static async Task<T> UpdateAsync<T>(T aObjeto, String path) where T : IEntity
         {
             if (!path.StartsWith("/api"))

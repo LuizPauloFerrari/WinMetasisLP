@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+using System.Globalization;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WinMetasisLP.Entities;
@@ -32,16 +27,15 @@ namespace WinMetasisLP
         {
             _ProdutoModel.produtoId = int.TryParse(EdtProdutoId.Text, out int i) ? Convert.ToInt32(EdtProdutoId.Text) : 0;
             _ProdutoModel.descricao = EdtDescricao.Text;
-            _ProdutoModel.preco = double.TryParse(EdtPreco.Text, out double n) ? Convert.ToDouble(EdtPreco.Text) : 0;
+            string _Preco = EdtPreco.Text.Replace(CultureInfo.CurrentCulture.NumberFormat.CurrencySymbol, "");
+            _ProdutoModel.preco = double.TryParse(_Preco, out double n) ? Convert.ToDouble(_Preco) : 0;
         }
 
         private void RefreshView()
         {
             EdtProdutoId.Text = _ProdutoModel.produtoId.ToString();
             EdtDescricao.Text = _ProdutoModel.descricao;
-            EdtPreco.Text = _ProdutoModel.preco.ToString();
-
-            
+            EdtPreco.Text = _ProdutoModel.preco.ToString("C2", CultureInfo.CurrentCulture);
         }
 
         private void Clean()
@@ -57,7 +51,8 @@ namespace WinMetasisLP
 
         private void btnLoad_Click(object sender, EventArgs e)
         {
-            LoadFields();
+            LoadFields(
+                );
         }
         
         private void LoadFields()
@@ -129,25 +124,9 @@ namespace WinMetasisLP
             }
         }
 
-        private async void btnLoadGrid_Click(object sender, EventArgs e)
-        {
-            //await Task.Delay(5000);
-            dgProdutos.Rows.Clear();
-
-            List<Produto> _Produtos = new List<Produto>();
-
-            _Produtos = await UtilAPI.GetAllAsync<List<Produto>>(_ProdutoModel);
-            foreach (Produto _Produto in _Produtos)
-            {
-                dgProdutos.Rows.Add(_Produto.produtoId, _Produto.descricao, _Produto.preco);
-            }
-
-        }
-
         private void btnSearch_Click(object sender, EventArgs e)
         {
             FormProdutoSearch _Form = new FormProdutoSearch();
-            //_Form.MdiParent = this;
             if (_Form.ShowDialog() == DialogResult.OK)
             {
                 EdtProdutoId.Text = _Form.ResultValue;
