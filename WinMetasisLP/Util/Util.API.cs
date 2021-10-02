@@ -114,6 +114,26 @@ namespace WinMetasisLP.Util
             }
         }
         
+        public static async Task<EntityPage<T>> PostFilterAsyncPage<T, T2>(T2 aObjeto, decimal? aPage, decimal? aSize) 
+        {
+            HttpResponseMessage response = await client.PostAsJsonAsync(
+                $"api/{aObjeto.ToString()}/FilterPage/?size={aSize}&page={aPage}", aObjeto);
+            if (response.IsSuccessStatusCode)
+            {
+                var r = await response.Content.ReadAsAsync<EntityPage<T>>();
+                if (r.PageNumber > r.PageCount)
+                {
+                    r.PageNumber = r.PageCount;
+                    r = await PostFilterAsyncPage<T, T2>(aObjeto, 1, aSize);
+                }
+                return r;
+            }
+            else
+            {
+                return default(EntityPage<T>);
+            }
+        }
+        
         public static async Task<T> GetAllAsync<T>(Object aObjeto)
         {
             return await GetAllAsync<T>(aObjeto.GetType().Name);

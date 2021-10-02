@@ -51,8 +51,7 @@ namespace WinMetasisLP
 
         private void btnLoad_Click(object sender, EventArgs e)
         {
-            LoadFields(
-                );
+            LoadFields();
         }
         
         private void LoadFields()

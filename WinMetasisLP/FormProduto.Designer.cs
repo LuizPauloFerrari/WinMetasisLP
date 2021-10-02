@@ -44,57 +44,64 @@ namespace WinMetasisLP
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(23, 9);
+            this.label1.Location = new System.Drawing.Point(31, 12);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(43, 13);
+            this.label1.Size = new System.Drawing.Size(55, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "Código:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(8, 34);
+            this.label2.Location = new System.Drawing.Point(11, 44);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(58, 13);
+            this.label2.Size = new System.Drawing.Size(74, 17);
             this.label2.TabIndex = 1;
             this.label2.Text = "Descrição:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(28, 60);
+            this.label3.Location = new System.Drawing.Point(37, 78);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(38, 13);
+            this.label3.Size = new System.Drawing.Size(49, 17);
             this.label3.TabIndex = 2;
             this.label3.Text = "Preço:";
             // 
             // EdtProdutoId
             // 
-            this.EdtProdutoId.Location = new System.Drawing.Point(72, 6);
+            this.EdtProdutoId.Location = new System.Drawing.Point(96, 8);
+            this.EdtProdutoId.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.EdtProdutoId.Name = "EdtProdutoId";
-            this.EdtProdutoId.Size = new System.Drawing.Size(100, 20);
+            this.EdtProdutoId.Size = new System.Drawing.Size(132, 25);
             this.EdtProdutoId.TabIndex = 3;
             this.EdtProdutoId.Leave += new System.EventHandler(this.btnLoad_Click);
             // 
             // EdtDescricao
             // 
-            this.EdtDescricao.Location = new System.Drawing.Point(72, 31);
+            this.EdtDescricao.Location = new System.Drawing.Point(96, 41);
+            this.EdtDescricao.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.EdtDescricao.Name = "EdtDescricao";
-            this.EdtDescricao.Size = new System.Drawing.Size(513, 20);
+            this.EdtDescricao.Size = new System.Drawing.Size(586, 25);
             this.EdtDescricao.TabIndex = 4;
             // 
             // EdtPreco
             // 
-            this.EdtPreco.Location = new System.Drawing.Point(72, 57);
+            this.EdtPreco.Location = new System.Drawing.Point(96, 75);
+            this.EdtPreco.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.EdtPreco.Name = "EdtPreco";
-            this.EdtPreco.Size = new System.Drawing.Size(100, 20);
+            this.EdtPreco.Size = new System.Drawing.Size(132, 25);
             this.EdtPreco.TabIndex = 5;
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(178, 4);
+            this.btnSearch.Location = new System.Drawing.Point(237, 5);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.Size = new System.Drawing.Size(100, 30);
             this.btnSearch.TabIndex = 6;
             this.btnSearch.Text = "Pesquisar";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -102,9 +109,10 @@ namespace WinMetasisLP
             // 
             // btnPost
             // 
-            this.btnPost.Location = new System.Drawing.Point(72, 83);
+            this.btnPost.Location = new System.Drawing.Point(96, 109);
+            this.btnPost.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnPost.Name = "btnPost";
-            this.btnPost.Size = new System.Drawing.Size(75, 23);
+            this.btnPost.Size = new System.Drawing.Size(100, 30);
             this.btnPost.TabIndex = 7;
             this.btnPost.Text = "Salvar";
             this.btnPost.UseVisualStyleBackColor = true;
@@ -112,9 +120,10 @@ namespace WinMetasisLP
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(153, 83);
+            this.btnDelete.Location = new System.Drawing.Point(204, 109);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnDelete.Size = new System.Drawing.Size(100, 30);
             this.btnDelete.TabIndex = 9;
             this.btnDelete.Text = "Excluir";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -122,9 +131,10 @@ namespace WinMetasisLP
             // 
             // btnClean
             // 
-            this.btnClean.Location = new System.Drawing.Point(259, 4);
+            this.btnClean.Location = new System.Drawing.Point(345, 5);
+            this.btnClean.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnClean.Name = "btnClean";
-            this.btnClean.Size = new System.Drawing.Size(75, 23);
+            this.btnClean.Size = new System.Drawing.Size(100, 30);
             this.btnClean.TabIndex = 12;
             this.btnClean.Text = "Limpar";
             this.btnClean.UseVisualStyleBackColor = true;
@@ -132,9 +142,10 @@ namespace WinMetasisLP
             // 
             // FormProduto
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(597, 116);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(195)))), ((int)(((byte)(199)))));
+            this.ClientSize = new System.Drawing.Size(695, 152);
             this.Controls.Add(this.btnClean);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnPost);
@@ -145,8 +156,12 @@ namespace WinMetasisLP
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Font = new System.Drawing.Font("Cambria", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FormProduto";
-            this.Text = "FormProduto";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Cadastro de Produtos";
             this.ResumeLayout(false);
             this.PerformLayout();
 

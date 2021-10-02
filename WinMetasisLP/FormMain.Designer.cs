@@ -39,15 +39,17 @@ namespace WinMetasisLP
             this.panel1.Controls.Add(this.btnProduto);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 33);
+            this.panel1.Size = new System.Drawing.Size(1067, 43);
             this.panel1.TabIndex = 0;
             // 
             // btnProduto
             // 
-            this.btnProduto.Location = new System.Drawing.Point(3, 3);
+            this.btnProduto.Location = new System.Drawing.Point(4, 4);
+            this.btnProduto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnProduto.Name = "btnProduto";
-            this.btnProduto.Size = new System.Drawing.Size(90, 26);
+            this.btnProduto.Size = new System.Drawing.Size(120, 34);
             this.btnProduto.TabIndex = 2;
             this.btnProduto.Text = "Produto";
             this.btnProduto.UseVisualStyleBackColor = true;
@@ -55,11 +57,13 @@ namespace WinMetasisLP
             // 
             // FormMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1067, 588);
             this.Controls.Add(this.panel1);
+            this.Font = new System.Drawing.Font("Cambria", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.IsMdiContainer = true;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FormMain";
             this.Text = "FormMain";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
