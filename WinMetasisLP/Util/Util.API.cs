@@ -9,7 +9,7 @@ namespace WinMetasisLP.Util
 {
     class UtilAPI
     {
-        static HttpClient client = new HttpClient();
+        static readonly HttpClient client = new HttpClient();
 
         public static void ConfigureClient(string aURL)
         {
@@ -96,28 +96,28 @@ namespace WinMetasisLP.Util
             }
             else
             {
-                return default(T);
+                return default;
             }
         }
         
         public static async Task<T> PostFilterAsync<T, T2>(T2 aObjeto)
         {
             HttpResponseMessage response = await client.PostAsJsonAsync(
-                $"api/{aObjeto.ToString()}/Filter", aObjeto);
+                $"api/{aObjeto}/Filter", aObjeto);
             if (response.IsSuccessStatusCode)
             {
                 return await response.Content.ReadAsAsync<T>();
             }
             else
             {
-                return default(T);
+                return default;
             }
         }
         
         public static async Task<EntityPage<T>> PostFilterAsyncPage<T, T2>(T2 aObjeto, decimal? aPage, decimal? aSize) 
         {
             HttpResponseMessage response = await client.PostAsJsonAsync(
-                $"api/{aObjeto.ToString()}/FilterPage/?size={aSize}&page={aPage}", aObjeto);
+                $"api/{aObjeto}/FilterPage/?size={aSize}&page={aPage}", aObjeto);
             if (response.IsSuccessStatusCode)
             {
                 var r = await response.Content.ReadAsAsync<EntityPage<T>>();
@@ -130,7 +130,7 @@ namespace WinMetasisLP.Util
             }
             else
             {
-                return default(EntityPage<T>);
+                return default;
             }
         }
         

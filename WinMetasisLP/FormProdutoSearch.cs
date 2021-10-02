@@ -22,9 +22,11 @@ namespace WinMetasisLP
         {
             InitializeComponent();
             ResultValue = "";
-            _ProdutosPage = new EntityPage<Produto>();
-            _ProdutosPage.PageNumber = 1;
-            _ProdutosPage.PageSize = 3;
+            _ProdutosPage = new EntityPage<Produto>
+            {
+                PageNumber = 1,
+                PageSize = 3
+            };
             NuPage.Minimum = 1;
             NuPage.Maximum = 1;
         }
@@ -38,10 +40,10 @@ namespace WinMetasisLP
 
                 ProdutoDTO _ProdutoModel = new ProdutoDTO
                 {
-                    produtoId = int.TryParse(edtProdutoId.Text, out int i) ? Convert.ToInt32(edtProdutoId.Text) : 0,
-                    descricao = EdtDescricao.Text,
-                    precoIni = double.TryParse(edtPrecoIni.Text, out double n1) ? Convert.ToDouble(edtPrecoIni.Text) : 0,
-                    precoFim = double.TryParse(EdtPrecoFim.Text, out double n2) ? Convert.ToDouble(EdtPrecoFim.Text) : 0
+                    ProdutoId = int.TryParse(edtProdutoId.Text, out int i) ? Convert.ToInt32(edtProdutoId.Text) : 0,
+                    Descricao = EdtDescricao.Text,
+                    PrecoIni = double.TryParse(edtPrecoIni.Text, out double n1) ? Convert.ToDouble(edtPrecoIni.Text) : 0,
+                    PrecoFim = double.TryParse(EdtPrecoFim.Text, out double n2) ? Convert.ToDouble(EdtPrecoFim.Text) : 0
                 };
 
                 //List<Produto> _Produtos;
@@ -57,7 +59,7 @@ namespace WinMetasisLP
                 {
                     foreach (Produto _Produto in _ProdutosPage.Items)
                     {
-                        dgProdutos.Rows.Add(_Produto.produtoId, _Produto.descricao, _Produto.preco);
+                        dgProdutos.Rows.Add(_Produto.ProdutoId, _Produto.Descricao, _Produto.Preco);
                     }
                 }
             }
@@ -75,29 +77,29 @@ namespace WinMetasisLP
             LoadGrid();
         }
 
-        private void dgProdutos_DoubleClick(object sender, EventArgs e)
+        private void DgProdutos_DoubleClick(object sender, EventArgs e)
         {
             ResultValue = dgProdutos.Rows[dgProdutos.CurrentRow.Index].Cells[0].FormattedValue.ToString();
             DialogResult = DialogResult.OK;
             Close();
         }
 
-        private void btnOk_Click(object sender, EventArgs e)
+        private void BtnOk_Click(object sender, EventArgs e)
         {
             ResultValue = dgProdutos.Rows[dgProdutos.CurrentRow.Index].Cells[0].FormattedValue.ToString();
         }
 
-        private void dgProdutos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void DgProdutos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
 
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        private void TableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
 
         }
 
-        private void btnPosterior_Click(object sender, EventArgs e)
+        private void BtnPosterior_Click(object sender, EventArgs e)
         {
             if (_ProdutosPage.PageNumber < _ProdutosPage.PageCount) 
             {
@@ -106,19 +108,19 @@ namespace WinMetasisLP
             LoadGrid();
         }
 
-        private void btnAnterior_Click(object sender, EventArgs e)
+        private void BtnAnterior_Click(object sender, EventArgs e)
         {
             if (_ProdutosPage.PageNumber > 1) { _ProdutosPage.PageNumber--; };
             LoadGrid();
         }
 
-        private void btnPrimeiro_Click(object sender, EventArgs e)
+        private void BtnPrimeiro_Click(object sender, EventArgs e)
         {
             _ProdutosPage.PageNumber = 1;
             LoadGrid();
         }
 
-        private void btnUltimo_Click(object sender, EventArgs e)
+        private void BtnUltimo_Click(object sender, EventArgs e)
         {
             _ProdutosPage.PageNumber = _ProdutosPage.PageCount;
             LoadGrid();

@@ -10,16 +10,18 @@ namespace WinMetasisLP.Entities
 {
     public class Produto: IEntity
     {
-        public int produtoId { get; set; }
-        public string descricao { get; set; }
-        public double preco { get; set; }
+        public int ProdutoId { get; set; }
+        public string Descricao { get; set; }
+        public double Preco { get; set; }
         public EntityOptions Options { get; set; }
 
         public Produto()
         {
-            Options = new EntityOptions();
-            Options.Found = false;
-            Options.Status = StatusRecord.Inserting;
+            Options = new EntityOptions
+            {
+                Found = false,
+                Status = StatusRecord.Inserting
+            };
         }
     }
     

@@ -19,10 +19,12 @@ namespace WinMetasisLP
             UtilAPI.ConfigureClient(Properties.Settings.Default.URLAPIMetasis);
         }
 
-        private void btnProduto_Click(object sender, EventArgs e)
+        private void BtnProduto_Click(object sender, EventArgs e)
         {
-            FormProduto _Form = new FormProduto();
-            _Form.MdiParent = this;
+            FormProduto _Form = new FormProduto
+            {
+                MdiParent = this
+            };
             _Form.Show();
         }
 

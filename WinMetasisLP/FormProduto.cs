@@ -25,17 +25,17 @@ namespace WinMetasisLP
 
         private void Reload()
         {
-            _ProdutoModel.produtoId = int.TryParse(EdtProdutoId.Text, out int i) ? Convert.ToInt32(EdtProdutoId.Text) : 0;
-            _ProdutoModel.descricao = EdtDescricao.Text;
+            _ProdutoModel.ProdutoId = int.TryParse(EdtProdutoId.Text, out _) ? Convert.ToInt32(EdtProdutoId.Text) : 0;
+            _ProdutoModel.Descricao = EdtDescricao.Text;
             string _Preco = EdtPreco.Text.Replace(CultureInfo.CurrentCulture.NumberFormat.CurrencySymbol, "");
-            _ProdutoModel.preco = double.TryParse(_Preco, out double n) ? Convert.ToDouble(_Preco) : 0;
+            _ProdutoModel.Preco = double.TryParse(_Preco, out _) ? Convert.ToDouble(_Preco) : 0;
         }
 
         private void RefreshView()
         {
-            EdtProdutoId.Text = _ProdutoModel.produtoId.ToString();
-            EdtDescricao.Text = _ProdutoModel.descricao;
-            EdtPreco.Text = _ProdutoModel.preco.ToString("C2", CultureInfo.CurrentCulture);
+            EdtProdutoId.Text = _ProdutoModel.ProdutoId.ToString();
+            EdtDescricao.Text = _ProdutoModel.Descricao;
+            EdtPreco.Text = _ProdutoModel.Preco.ToString("C2", CultureInfo.CurrentCulture);
         }
 
         private void Clean()
@@ -44,12 +44,12 @@ namespace WinMetasisLP
             RefreshView();
             EdtProdutoId.Focus();
         }
-        private void btnClean_Click(object sender, EventArgs e)
+        private void BtnClean_Click(object sender, EventArgs e)
         {
             Clean();
         }
 
-        private void btnLoad_Click(object sender, EventArgs e)
+        private void BtnLoad_Click(object sender, EventArgs e)
         {
             LoadFields();
         }
@@ -62,7 +62,7 @@ namespace WinMetasisLP
                 //Rodar de Modo Síncrono 
                 //   https://stackoverflow.com/questions/53529061/whats-the-right-way-to-use-httpclient-synchronously/53529122
                 //   https://docs.microsoft.com/en-us/archive/blogs/jpsanders/asp-net-do-not-use-task-result-in-main-context
-                var task = Task.Run(() => UtilAPI.GetAsync<Produto>(_ProdutoModel, _ProdutoModel.produtoId.ToString()));
+                var task = Task.Run(() => UtilAPI.GetAsync<Produto>(_ProdutoModel, _ProdutoModel.ProdutoId.ToString()));
                 task.Wait();
                 _ProdutoModel = task.Result;
 
@@ -80,7 +80,7 @@ namespace WinMetasisLP
             }
         }
 
-        private void btnPost_Click(object sender, EventArgs e)
+        private void BtnPost_Click(object sender, EventArgs e)
         {
             Reload();
             try
@@ -93,7 +93,7 @@ namespace WinMetasisLP
                 }
                 else
                 {
-                    var task = Task.Run(() => UtilAPI.UpdateAsync(_ProdutoModel, _ProdutoModel.produtoId.ToString()) );
+                    var task = Task.Run(() => UtilAPI.UpdateAsync(_ProdutoModel, _ProdutoModel.ProdutoId.ToString()) );
                     task.Wait();
                 }
             }
@@ -103,14 +103,14 @@ namespace WinMetasisLP
             }
         }
 
-        private void btnDelete_Click(object sender, EventArgs e)
+        private void BtnDelete_Click(object sender, EventArgs e)
         {
             Reload();
             try
             {
                 if (_ProdutoModel.Options.Status == StatusRecord.Updating)
                 {
-                    var task = Task.Run(() => UtilAPI.DeleteAsync(_ProdutoModel, _ProdutoModel.produtoId.ToString()) );
+                    var task = Task.Run(() => UtilAPI.DeleteAsync(_ProdutoModel, _ProdutoModel.ProdutoId.ToString()) );
                     task.Wait();
                     var statusCode = task.Result;
                     MessageBox.Show($"Registro Excluído!");
@@ -123,7 +123,7 @@ namespace WinMetasisLP
             }
         }
 
-        private void btnSearch_Click(object sender, EventArgs e)
+        private void BtnSearch_Click(object sender, EventArgs e)
         {
             FormProdutoSearch _Form = new FormProdutoSearch();
             if (_Form.ShowDialog() == DialogResult.OK)

@@ -78,7 +78,7 @@ namespace WinMetasisLP
             this.EdtProdutoId.Name = "EdtProdutoId";
             this.EdtProdutoId.Size = new System.Drawing.Size(132, 25);
             this.EdtProdutoId.TabIndex = 3;
-            this.EdtProdutoId.Leave += new System.EventHandler(this.btnLoad_Click);
+            this.EdtProdutoId.Leave += new System.EventHandler(this.BtnLoad_Click);
             // 
             // EdtDescricao
             // 
@@ -105,7 +105,7 @@ namespace WinMetasisLP
             this.btnSearch.TabIndex = 6;
             this.btnSearch.Text = "Pesquisar";
             this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            this.btnSearch.Click += new System.EventHandler(this.BtnSearch_Click);
             // 
             // btnPost
             // 
@@ -116,7 +116,7 @@ namespace WinMetasisLP
             this.btnPost.TabIndex = 7;
             this.btnPost.Text = "Salvar";
             this.btnPost.UseVisualStyleBackColor = true;
-            this.btnPost.Click += new System.EventHandler(this.btnPost_Click);
+            this.btnPost.Click += new System.EventHandler(this.BtnPost_Click);
             // 
             // btnDelete
             // 
@@ -127,7 +127,7 @@ namespace WinMetasisLP
             this.btnDelete.TabIndex = 9;
             this.btnDelete.Text = "Excluir";
             this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            this.btnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
             // 
             // btnClean
             // 
@@ -138,7 +138,7 @@ namespace WinMetasisLP
             this.btnClean.TabIndex = 12;
             this.btnClean.Text = "Limpar";
             this.btnClean.UseVisualStyleBackColor = true;
-            this.btnClean.Click += new System.EventHandler(this.btnClean_Click);
+            this.btnClean.Click += new System.EventHandler(this.BtnClean_Click);
             // 
             // FormProduto
             // 

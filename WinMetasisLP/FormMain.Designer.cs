@@ -53,7 +53,7 @@ namespace WinMetasisLP
             this.btnProduto.TabIndex = 2;
             this.btnProduto.Text = "Produto";
             this.btnProduto.UseVisualStyleBackColor = true;
-            this.btnProduto.Click += new System.EventHandler(this.btnProduto_Click);
+            this.btnProduto.Click += new System.EventHandler(this.BtnProduto_Click);
             // 
             // FormMain
             // 

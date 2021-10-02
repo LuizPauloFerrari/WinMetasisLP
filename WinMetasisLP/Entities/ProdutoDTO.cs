@@ -10,17 +10,19 @@ namespace WinMetasisLP.Entities
 {
     public class ProdutoDTO: IEntity
     {
-        public int produtoId { get; set; }
-        public string descricao { get; set; }
-        public double precoIni { get; set; }
-        public double precoFim { get; set; }
+        public int ProdutoId { get; set; }
+        public string Descricao { get; set; }
+        public double PrecoIni { get; set; }
+        public double PrecoFim { get; set; }
         public EntityOptions Options { get; set; }
 
         public ProdutoDTO()
         {
-            Options = new EntityOptions();
-            Options.Found = false;
-            Options.Status = StatusRecord.Inserting;
+            Options = new EntityOptions
+            {
+                Found = false,
+                Status = StatusRecord.Inserting
+            };
         }
 
         public override string ToString()
